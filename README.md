@@ -1,4 +1,4 @@
-# Project Name
+# Travis' salary/bonus calculator
 
 [Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
 
