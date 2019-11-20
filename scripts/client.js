@@ -1,5 +1,6 @@
 const salaryArray = [];
-let totalSalaries = 0;
+const monthlyMax = 20000
+let monthlyCost = 0;
 
 $(document).ready(init);
 
@@ -9,41 +10,32 @@ function init() {
 
 function enable(value) {
     if (value) {
-        $('#customerForm').on('submit', submitCustomerForm);
+        $('#employeeForm').on('submit', submitEmployeeForm);
         $('.js-btn-clear').on('click', resetInputs);
-        $('.js-salary').on('click', '.js-btn-delete', deleteSalary);
+        $('.js-salaries').on('click', '.js-btn-delete', deleteSalary);
     } else {
-        $('#customerForm').off('submit', submitCustomerForm);
+        $('#employeeForm').off('submit', submitEmployeeForm);
         $('.js-btn-clear').off('click', resetInputs);
-        $('.js-salary').off('click', '.js-btn-delete', deleteSalary);
+        $('.js-salaries').off('click', '.js-btn-delete', deleteSalary);
     }
 }
 
-function submitCustomerForm(event) {
+function submitEmployeeForm(event) {
     event.preventDefault();
-//ID number, job title, annual salary
     const salaryObject = {
         firstName: $('#firstName').val(),
         lastName: $('#lastName').val(),
         jobTitle: $('#jobTitle').val(),
-        idNumber: parseInt($('#idNumber').val())
+        idNumber: parseInt($('#idNumber').val()),
         annualSalary: parseInt($('#annualSalary').val())
-    }
-
-    // const dataObject = {};
-    // const valueArray = $('#customerForm').serializeArray();
-    // for(let item of valueArray) {
-    //     dataObject[item.name] = item.value;
-    // }
-    // addToOrders(dataObject);
-
+        }
     addToSalaries(salaryObject);
     resetInputs();
+    render();
 }
 
 function addToSalaries(salaryObject) {
     salaryArray.push(salaryObject);
-    render();
 }
 
 function deleteSalary() {
@@ -65,6 +57,7 @@ function findTotal() {
     for (let salaries of salaryArray) {
         totalSalaries += salaries.annualSalary;
     }
+    monthlyCost = totalSalaries/12;
 }
 
 function render() {
@@ -76,35 +69,25 @@ function render() {
 
         $('.js-salaries').append(`
             <tr data-id="${i}">
-                <td>${salary.firstName}</td>
-                <td>${salary.lastName}</td>
-                <td>${salary.jobTitle}</td>
-                <td>$${salary.idNumber}</td>
-                <td>$${salary.annualSalary}</td>
+                <td>${salaries.firstName}</td>
+                <td>${salaries.lastName}</td>
+                <td>${salaries.jobTitle}</td>
+                <td>${salaries.idNumber}</td>
+                <td>$${salaries.annualSalary}</td>
                 <td><button class="js-btn-delete btn">X</button></td>
             </tr>
         `);
     }
 
-    $('.total-salaries').text(`TOTAL : $${totalSalaries}`);
+    $('.total-salaries').text(`TOTAL : $${totalSalaries/12}`);
+    if (monthlyCost < monthlyMax) {
+        $('.js-Total-Monthly-Cost').text(`Monthly Total: $${monthlyCost}`).css('background-color', 'white');
+    } else if (monthlyCost > monthlyMax) {
+        $('.js-Total-Monthly-Cost').text(`Monthly Total: $${monthlyCost}`).css('background-color', 'red');
+    }
+
+
 }
 
 
 
-/*
-function submitCustomerForm(event) {
-    event.preventDefault();
-    // EXAMPLE 1
-    // let firstName = $('#firstName').val();
-    // let lastName = $('#lastName').val();
-    // let pizza = $('#pizza').val();
-    // let cost =  parseInt($('#cost').val());
-    // $('.js-orders').append(`
-    //     <div>
-    //         <p>${firstName} ${lastName} - ${pizza} - $${cost}</p>
-    //     </div>
-    // `);
-    totalCost += orderObject.cost;
-    resetInputs();
-}
-*/

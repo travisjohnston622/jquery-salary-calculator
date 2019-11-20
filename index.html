@@ -5,12 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>jquery-salary-calculator</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles.css">
     
     <script src="scripts/jquery.js"></script>
     <script src="scripts/client.js"></script>
 </head>
 <body>
+   
+    <form id="employeeForm">
+        <input type="text" name="firstName" id="firstName" placeholder="Enter First Name">
+        <input type="text" name="lastName" id="lastName" placeholder="Enter Last Name">
+        <input type="text" name="jobTitle" id="jobTitle" placeholder="Enter Job Title">
+        <input type="number" name="idNumber" id="idNumber" placeholder="Enter Id Number">
+        <input type="number" name="annualSalary" id="annualSalary" placeholder="Enter Annual Salary">
+        <button>Submit</button>
+    </form>
     
+    <button class="js-btn-clear btn">Clear</button>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Job Title</th>
+                <th>Id Number</th>
+                <th>Annual Salary</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+    
+        <tbody class="js-salaries">
+    
+        </tbody>
+    </table>
+    
+    <p class="js-Total-Monthly-Cost">Total Monthly Cost: $0</p>
+    
+     
+
 </body>
 </html>

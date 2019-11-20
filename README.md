@@ -1,9 +1,9 @@
 # Travis' salary/bonus calculator
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+[Project Instructions](./INSTRUCTIONS.md), 
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+This is a salary calculator where you fill in the input fields and it calculates the monthly cost based on those inputs
 
 Additional README details can be found [here](https://github.com/PrimeAcademy/github-finalization-assignment).
